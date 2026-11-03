@@ -1,0 +1,24 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number[]}
+     */
+    productExceptSelf(nums) {
+        let left = 1
+        let prefix = []
+        for(let i = 0;i < nums.length; i++){
+            prefix.push(left)
+            left *= nums[i]   
+        }
+        let right = 1
+        let suffix = new Array(nums.length)
+        for(let i = nums.length - 1; i >= 0; i--){
+            suffix[i] = right
+            right *= nums[i]
+        }
+        for(let i in nums){
+            nums[i] = prefix[i] * suffix[i]
+        }
+        return nums
+    }
+}
